@@ -29,7 +29,7 @@ main:
 
     jmp .infinite                        ; Jump here - infinite loop!
 
-    text_string db 'PotatOS 1.1', 0
+    text_string db 'PotatOS 1.2', 0
     prompt db `\r`, `\n`, '> ', 0        ; "> " on the start of a new line
 
 
