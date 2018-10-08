@@ -14,10 +14,23 @@ main:
     mov si, text_string                  ; Put string position into SI
     call print_string                    ; Call our string-printing routine
 
+.next_line:
+    mov si, prompt
+    call print_string
 .infinite:
+    mov ah, 0                            ; Character input service for kbd int.
+    int 16h                              ; Keyboard interrupt puts key in al
+
+    cmp al, `\r`                         ; Check for carriage return (enter key)
+    je .next_line
+
+    mov ah, 0Eh
+    int 0x10
+
     jmp .infinite                        ; Jump here - infinite loop!
 
     text_string db 'PotatOS 1.1', 0
+    prompt db `\r`, `\n`, '> ', 0        ; "> " on the start of a new line
 
 
 
