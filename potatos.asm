@@ -11,6 +11,10 @@ main:
     mov ax, 07C0h                        ; Set data segment to where we're loaded
     mov ds, ax
 
+    mov ah, 0                            ; Set video mode function for int 10h
+    mov al, 12h                          ; Video graphics mode 640x480 16-color
+    int 10h
+
     mov si, text_string                  ; Put string position into SI
     call print_string                    ; Call our string-printing routine
 
@@ -25,6 +29,7 @@ main:
     je .next_line
 
     mov ah, 0Eh
+    add bl, 01h                          ; change color
     int 0x10
 
     jmp .infinite                        ; Jump here - infinite loop!
