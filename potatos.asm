@@ -34,8 +34,8 @@ main:
 
     jmp .infinite                        ; Jump here - infinite loop!
 
-    text_string db 'PotatOS 1.2', 0
-    prompt db `\r`, `\n`, '> ', 0        ; "> " on the start of a new line
+    text_string db 'PotatOS 1.3', 0
+    prompt db `\r`, `\n`, ' $ ', 0       ; "$ " on the start of a new line
 
 
 
