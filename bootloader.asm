@@ -9,7 +9,7 @@ BITS 16
 ; CONSTANTS
 
 %define BOOTLOADER_START_SEGMENT        0x07C0
-%define KERNEL_START_SEGMENT            0x07E0
+%define KERNEL_LOAD_SEGMENT             0x07E0
 
 
 
@@ -58,7 +58,7 @@ main:
     mov ds, ax
 
     ; Let's read disk sectors into memory
-    mov ax, KERNEL_START_SEGMENT        ; Kernel start segment
+    mov ax, KERNEL_LOAD_SEGMENT         ; Kernel start segment
     mov es, ax
     mov bx, 0x0000                      ; Offset
     mov ah, 0x02                        ; INT 13h / AH = 02h
@@ -71,7 +71,7 @@ main:
 
     jc .error_message                   ; jump if clear flag set
 
-    jmp 0x2400
+    jmp 0x2400                          ; Diff between A000 - 7C00
 
 .error_message:
     mov si, error_text                  ; Put string position into SI
