@@ -1,10 +1,13 @@
-BITS 16
+; CONSTANTS
+
+%define KERNEL_START_SEGMENT            0x0A00
+
 
 
 
 ; ------------------------------------------------------------------------------
 main:
-    mov ax, 07C0h                       ; Set data segment to where we're loaded
+    mov ax, KERNEL_START_SEGMENT        ; Set data segment to where we're loaded
     mov ds, ax
 
     mov si, message                     ; Put string position into SI
@@ -13,7 +16,8 @@ main:
 .infinite:
     jmp .infinite                       ; Jump here - infinite loop!
 
-    message db 'TESTTESTTESTTEST', 0
+    message db 'PotatOS 1.5 Kernel', 0
+
 
 
 print_string:            ; Routine: output string in SI to screen
