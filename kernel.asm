@@ -1,14 +1,10 @@
-; CONSTANTS
-
-%define KERNEL_START_SEGMENT            0x0A00
+BITS 16
 
 
 
 ; ------------------------------------------------------------------------------
+; Main Section
 main:
-    mov ax, KERNEL_START_SEGMENT        ; Set data segment to where we're loaded
-    mov ds, ax
-
     mov si, message                     ; Put string position into SI
     call print_string                   ; Call our string-printing routine
 
@@ -20,6 +16,7 @@ main:
 
 
 ; ------------------------------------------------------------------------------
+; Print Routine
 print_string:                           ; Routine: output string in SI to screen
     mov ah, 0Eh                         ; int 10h 'print char' function
 
